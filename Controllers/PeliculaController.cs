@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using RestauranteAPI.Repositories;
-using RestauranteAPI.Service;
+using CineApi.Repositories;
+using CineApi.Service;
 
-namespace RestauranteAPI.Controllers
+namespace CineApi.Controllers
 {
    [Route("api/[controller]")]
    [ApiController]
