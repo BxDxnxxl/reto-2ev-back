@@ -1,0 +1,6 @@
+@reto_2ev_back_HostAddress = http://localhost:5281
+
+GET {{reto_2ev_back_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
