@@ -5,10 +5,16 @@ CREATE TABLE proveedor (
     NIF NVARCHAR(15)
 );
 
+CREATE TABLE tipoalimento (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    tipo NVARCHAR(30)
+);
+
 CREATE TABLE comida (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    tipo NVARCHAR(30),
-    nombre NVARCHAR(50)
+    fkIdTipoAlimento INT,
+    nombre NVARCHAR(50),
+    FOREIGN KEY (fkIdTipoAlimento) REFERENCES tipoalimento(id)
 );
 
 CREATE TABLE proveedorcomida (
@@ -17,19 +23,6 @@ CREATE TABLE proveedorcomida (
     PRIMARY KEY (fkIdComida, fkIdProveedor),
     FOREIGN KEY (fkIdComida) REFERENCES comida(id),
     FOREIGN KEY (fkIdProveedor) REFERENCES proveedor(id)
-);
-
-CREATE TABLE tipoalimento (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    tipo NVARCHAR(30)
-);
-
-CREATE TABLE comidatipo (
-    fkIdComida INT,
-    fkIdTipoAlimento INT,
-    PRIMARY KEY (fkIdComida, fkIdTipoAlimento),
-    FOREIGN KEY (fkIdComida) REFERENCES comida(id),
-    FOREIGN KEY (fkIdTipoAlimento) REFERENCES tipoalimento(id)
 );
 
 CREATE TABLE compra (
