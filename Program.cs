@@ -1,15 +1,17 @@
+using CineApi.Repositories;
+using CineApi.Service;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("RestauranteDB");
 
-//builder.Services.AddScoped<IPlatoPrincipalRepository, PlatoPrincipalRepository>(provider =>
-//new PlatoPrincipalRepository(connectionString));
+builder.Services.AddScoped<IPeliculaRepository, PeliculaRepository>(provider =>
+new PeliculaRepository(connectionString));
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<IPlatoPrincipalService, PlatoPrincipalService>();
+builder.Services.AddScoped<IPeliculaService, PeliculaService>();
 
 var app = builder.Build();
 
