@@ -1,6 +1,6 @@
 using Models;
 
-namespace RestauranteAPI.Repositories
+namespace CineApi.Repositories
 {
     public interface IPeliculaRepository
     {

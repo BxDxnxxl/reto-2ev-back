@@ -1,6 +1,6 @@
 using Models;
 
-namespace RestauranteAPI.Service
+namespace CineApi.Service
 {
     public interface IPeliculaService
     {

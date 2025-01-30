@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
-using RestauranteAPI.Repositories;
-using RestauranteAPI.Service;
-namespace RestauranteAPI.Service
+using CineApi.Repositories;
+using CineApi.Service;
+namespace CineApi.Service
 {
     public class PeliculaService : IPeliculaService
     {
-        private readonly IPeliculaService _peliculaRepository;
-        public PeliculaService(IPeliculaService peliculaRepository)
+        private readonly IPeliculaRepository _peliculaRepository;
+        public PeliculaService(IPeliculaRepository peliculaRepository)
         {
             _peliculaRepository = peliculaRepository;
         }

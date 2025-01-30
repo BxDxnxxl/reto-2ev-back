@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Models;
 
-namespace RestauranteAPI.Repositories
+namespace CineApi.Repositories
 {
     public class PeliculaRepository : IPeliculaRepository
     {
