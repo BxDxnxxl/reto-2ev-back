@@ -19,13 +19,13 @@ namespace CineApi.Controllers
         }
     
         [HttpGet]
-        public async Task<ActionResult<List<Pelicula>>> GetBebidas()
+        public async Task<ActionResult<List<Pelicula>>> GetPeliculas()
         {
             var peliculas = await _servicPelicula.GetAllAsync();
             return Ok(peliculas);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pelicula>> GetBebida(int id)
+        public async Task<ActionResult<Pelicula>> GetPelicula(int id)
         {
             var peliculas = await _servicPelicula.GetByIdAsync(id);
             if (peliculas == null)
@@ -36,14 +36,14 @@ namespace CineApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Pelicula>> CreateBebida(Pelicula peliculas)
+        public async Task<ActionResult<Pelicula>> CreatePelicula(Pelicula peliculas)
         {
             await _servicPelicula.AddAsync(peliculas);
-            return CreatedAtAction(nameof(GetBebida), new { id = peliculas.Id }, peliculas);
+            return CreatedAtAction(nameof(GetPelicula), new { id = peliculas.Id }, peliculas);
         }
 
        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBebida(int id, Pelicula updatePelicula)
+        public async Task<IActionResult> UpdatePelicula(int id, Pelicula updatePelicula)
         {
             var existingPelicula = await _servicPelicula.GetByIdAsync(id);
             if (existingPelicula == null)
@@ -68,7 +68,7 @@ namespace CineApi.Controllers
         ///Cambio necesario///
   
        [HttpDelete("{id}")]
-       public async Task<IActionResult> DeletePlato(int id)
+       public async Task<IActionResult> DeletePelicula(int id)
        {
            var pelicula = await _servicPelicula.GetByIdAsync(id);
            if (pelicula == null)
