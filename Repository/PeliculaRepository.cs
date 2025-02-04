@@ -91,7 +91,7 @@ namespace CineApi.Repositories
             {
                 await connection.OpenAsync();
 
-                string query = "INSERT INTO Bebida (Nombre, Descripcion, Director, AnioSalida, ImagenBannerUrl, ImagenPequeniaUrl, Duracion, Precio) VALUES (@Nombre, @Descripcion, @Director, @AnioSalida, @ImagenBannerUrl, @ImagenPequeniaUrl, @Duracion, @Precio)";
+                string query = "INSERT INTO Pelicula (Nombre, Descripcion, Director, AnioSalida, ImagenBannerUrl, ImagenPequeniaUrl, Duracion, Precio) VALUES (@Nombre, @Descripcion, @Director, @AnioSalida, @ImagenBannerUrl, @ImagenPequeniaUrl, @Duracion, @Precio)";
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nombre", pelicula.Nombre);
@@ -117,6 +117,7 @@ namespace CineApi.Repositories
                 string query = "UPDATE pelicula SET Nombre = @Nombre, Precio = @Precio, esAlcoholica = @esAlcoholica WHERE Id = @Id";
                 using (var command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Id", pelicula.Id);
                     command.Parameters.AddWithValue("@Nombre", pelicula.Nombre);
                     command.Parameters.AddWithValue("@Descripcion", pelicula.Descripcion);
                     command.Parameters.AddWithValue("@Director", pelicula.Director);

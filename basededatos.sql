@@ -67,10 +67,12 @@ CREATE TABLE peliculaCategoria (
 
 CREATE TABLE comentarios (
     id INT IDENTITY(1,1) PRIMARY KEY,
+    fkIdPelicula INT,
     fkIdUsuario INT,
     valoracion INT CHECK (valoracion BETWEEN 1 AND 5),
     comentario NVARCHAR(255),
-    FOREIGN KEY (fkIdUsuario) REFERENCES usuarios(id)
+    FOREIGN KEY (fkIdUsuario) REFERENCES usuarios(id),
+    FOREIGN KEY (fkIdPelicula) REFERENCES pelicula(id)
 );
 
 CREATE TABLE sala (
