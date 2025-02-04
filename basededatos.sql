@@ -25,12 +25,6 @@ CREATE TABLE proveedorcomida (
     FOREIGN KEY (fkIdProveedor) REFERENCES proveedor(id)
 );
 
-CREATE TABLE compra (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    fkIdUsuario INT,
-    FOREIGN KEY (fkIdUsuario) REFERENCES usuarios(id)
-);
-
 CREATE TABLE usuarios (
     id INT IDENTITY(1,1) PRIMARY KEY,
     username NVARCHAR(40) UNIQUE,
@@ -39,6 +33,12 @@ CREATE TABLE usuarios (
     apellido2 NVARCHAR(30),
     contraseña NVARCHAR(50),
     profilepic NVARCHAR(255)
+);
+
+CREATE TABLE compra (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    fkIdUsuario INT,
+    FOREIGN KEY (fkIdUsuario) REFERENCES usuarios(id)
 );
 
 CREATE TABLE pelicula (
@@ -82,11 +82,12 @@ CREATE TABLE sala (
 );
 
 CREATE TABLE asientos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
     fkIdSala INT,
     fila INT,
     numero INT,
-    PRIMARY KEY (fkIdSala, fila, numero),
-    FOREIGN KEY (fkIdSala) REFERENCES sala(id)
+    FOREIGN KEY (fkIdSala) REFERENCES sala(id),
+    UNIQUE (fkIdSala, fila, numero)
 );
 
 CREATE TABLE sesion (
@@ -100,14 +101,15 @@ CREATE TABLE sesion (
 );
 
 CREATE TABLE asientos_sesion (
+    id INT IDENTITY(1,1) PRIMARY KEY,
     fkIdSesion INT,
-    fkIdSala INT,
-    fila INT,
-    numero INT,
+    fkIdAsiento INT,
+    fkIdUsuario INT NULL,
+    fechaReserva DATETIME NULL,
     ocupado TINYINT DEFAULT 0,
-    PRIMARY KEY (fkIdSesion, fkIdSala, fila, numero),
     FOREIGN KEY (fkIdSesion) REFERENCES sesion(id),
-    FOREIGN KEY (fkIdSala, fila, numero) REFERENCES asientos(fkIdSala, fila, numero)
+    FOREIGN KEY (fkIdAsiento) REFERENCES asientos(id),
+    FOREIGN KEY (fkIdUsuario) REFERENCES usuarios(id)
 );
 
 CREATE TABLE roles (
